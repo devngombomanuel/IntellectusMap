@@ -4,17 +4,16 @@ from flask import current_app
 class GeminiService:
     @staticmethod
     def generate_mindmap(text_content):
-
         api_key = current_app.config.get('GEMINI_API_KEY')
         
         if not api_key:
             raise ValueError("A chave GEMINI_API_KEY não foi encontrada nas configurações.")
             
-        # Força o SDK a autenticar exclusivamente por API Key
+        # Configura a autenticação na API estável atual
         genai.configure(api_key=api_key)
         
-        # ALTERADO: Voltamos para o 'gemini-pro' para garantir compatibilidade total com a sua biblioteca v0.4.1
-        model = genai.GenerativeModel('gemini-pro')
+        # Com a biblioteca atualizada, o modelo roda direto pelo nome padrão estável
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         prompt = (
             "Você é um especialista em análise acadêmica e organização de conhecimento.\n\n"
@@ -47,6 +46,6 @@ class GeminiService:
         
         if not response.text:
             raise Exception("A API do Gemini retornou uma resposta em branco.")
-
+            
         clean_code = response.text.replace("```mermaid", "").replace("```", "").strip()
         return clean_code
