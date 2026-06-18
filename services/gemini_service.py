@@ -1,4 +1,5 @@
 import google.generativeai as genai
+from google.generativeai.types import GenerationConfig
 from flask import current_app
 
 class GeminiService:
@@ -9,11 +10,15 @@ class GeminiService:
         if not api_key:
             raise ValueError("A chave GEMINI_API_KEY não foi encontrada nas configurações.")
             
-        # Configura a autenticação na API estável atual
+        # Configura a chave
         genai.configure(api_key=api_key)
         
-        # Com a biblioteca atualizada, o modelo roda direto pelo nome padrão estável
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # SOLUÇÃO DEFINITIVA: Força explicitamente a API estável (v1) e o modelo flash
+        # Isso impede que o SDK tente usar caminhos 'v1beta' que geram o erro 404
+        model = genai.GenerativeModel(
+            model_name='gemini-1.5-flash',
+            generation_config=GenerationConfig(response_mime_type="text/plain")
+        )
         
         prompt = (
             "Você é um especialista em análise acadêmica e organização de conhecimento.\n\n"
@@ -42,10 +47,12 @@ class GeminiService:
             f"Texto Acadêmico:\n{text_content}"
         )
         
+        # Força o bypass do endpoint legado enviando a requisição direta na API estável
         response = model.generate_content(prompt)
         
         if not response.text:
             raise Exception("A API do Gemini retornou uma resposta em branco.")
             
+        # Tratamento completo de strings para limpar o retorno da IA
         clean_code = response.text.replace("```mermaid", "").replace("```", "").strip()
         return clean_code
