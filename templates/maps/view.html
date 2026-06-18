@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %} {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>{{ mindmap.title }}</h2>
+  <div>
+    <a href="{{ url_for('maps.history') }}" class="btn btn-outline-secondary"
+      >Voltar ao Histórico</a
+    >
+  </div>
+</div>
+
+<div class="card shadow-sm p-4 text-center bg-white border-0">
+  <div class="mermaid" style="overflow-x: auto">
+    {{ mindmap.mermaid_code | safe }}
+  </div>
+</div>
+
+<div class="card mt-4 p-3 bg-light">
+  <h6>Código Estrutural do Mapa (Mermaid)</h6>
+  <pre><code>{{ mindmap.mermaid_code }}</code></pre>
+</div>
+{% endblock %}

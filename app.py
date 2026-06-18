@@ -7,6 +7,7 @@ from routes.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.upload import upload_bp
 from routes.maps import maps_bp
+from routes.profile import profile_bp
 
 def create_app():
     app = Flask(__name__)
@@ -29,6 +30,7 @@ def create_app():
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(upload_bp)
     app.register_blueprint(maps_bp)
+    app.register_blueprint(profile_bp)  # <-- ATUALIZADO: Incluído o Blueprint de perfil
 
     # Criação de pastas internas necessárias e DB
     with app.app_context():

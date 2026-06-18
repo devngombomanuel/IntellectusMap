@@ -1,0 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ambientes Virtuais (Virtual Environments)
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# Banco de Dados Local (SQLite)
+# Mantém o banco de dados e os dados de teste fora do repositório remoto
+database/intellectus.db
+instance/
+
+# Uploads de Usuários (Arquivos enviados em ambiente de teste)
+# Ignora arquivos PDF/DOCX e imagens enviadas por usuários durante os testes locais
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Arquivos de Configuração de IDEs (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs do Sistema e do Flask
+*.log
+crash.log
+
+# Variáveis de ambiente (Onde você guardará sua GEMINI_API_KEY localmente)
+.env
+.flaskenv
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db

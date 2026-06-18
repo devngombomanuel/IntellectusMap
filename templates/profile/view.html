@@ -1,0 +1,153 @@
+{% extends "layouts/base.html" %} {% block content %}
+<h2 class="mb-4">Seu Perfil de Estudante</h2>
+
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <div class="card shadow-sm border-0 text-center p-4">
+      <div class="mb-3">
+        {% if current_user.profile_photo == 'default_profile.png' %}
+        <img
+          src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/icons/person-circle.svg"
+          class="rounded-circle bg-light p-2"
+          width="120"
+          height="120"
+          alt="Foto Padrão"
+        />
+        {% else %}
+        <img
+          src="{{ url_for('static', filename=current_user.profile_photo) }}"
+          class="rounded-circle object-fit-cover border"
+          width="120"
+          height="120"
+          alt="Foto de Perfil"
+        />
+        {% endif %}
+      </div>
+      <h4>{{ current_user.name }}</h4>
+      <p class="text-muted mb-1">
+        {{ current_user.course or 'Curso não informado' }}
+      </p>
+      <p class="small text-secondary">
+        {{ current_user.university or 'Universidade não informada' }}
+      </p>
+
+      <hr />
+
+      <div class="row text-center mt-2">
+        <div class="col-6 mb-3">
+          <h5 class="text-primary mb-0">
+            {{ stats.total_maps if stats else 0 }}
+          </h5>
+          <small class="text-muted">Mapas</small>
+        </div>
+        <div class="col-6 mb-3">
+          <h5 class="text-success mb-0">
+            {{ stats.total_words if stats else 0 }}
+          </h5>
+          <small class="text-muted">Palavras</small>
+        </div>
+      </div>
+
+      {% if current_user.bio %}
+      <div class="text-start mt-3 bg-light p-3 rounded">
+        <h6>Biografia:</h6>
+        <p class="small text-dark mb-0">{{ current_user.bio }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card shadow-sm border-0 p-4">
+      <h5 class="card-title mb-4">Editar Informações Acadêmicas</h5>
+
+      <form
+        action="{{ url_for('profile.view_profile') }}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nome Completo</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              value="{{ current_user.name }}"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">E-mail (Não editável)</label>
+            <input
+              type="email"
+              class="form-control"
+              value="{{ current_user.email }}"
+              readonly
+              disabled
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Curso</label>
+            <input
+              type="text"
+              name="course"
+              class="form-control"
+              value="{{ current_user.course or '' }}"
+              placeholder="Ex: Engenharia de Software"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Universidade</label>
+            <input
+              type="text"
+              name="university"
+              class="form-control"
+              value="{{ current_user.university or '' }}"
+              placeholder="Ex: USP, UFRJ"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Ano / Período Acadêmico</label>
+          <input
+            type="text"
+            name="academic_year"
+            class="form-control"
+            value="{{ current_user.academic_year or '' }}"
+            placeholder="Ex: 3º Ano, 6º Semestre"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Biografia / Resumo de Estudos</label>
+          <textarea
+            name="bio"
+            class="form-control"
+            rows="4"
+            placeholder="Conte um pouco sobre seus objetivos de estudo..."
+          >
+{{ current_user.bio or '' }}</textarea
+          >
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Alterar Foto de Perfil</label>
+          <input
+            type="file"
+            name="profile_photo"
+            class="form-control"
+            accept="image/*"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

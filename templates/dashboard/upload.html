@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2 class="mb-4">Gerar Novo Mapa Mental por IA</h2>
+
+<div class="card shadow-sm p-4">
+    <form action="{{ url_for('upload.process_content') }}" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label font-weight-bold">Título do Estudo / Mapa</label>
+            <input type="text" name="title" class="form-value form-control" placeholder="Ex: Anatomia Humana, Arquitetura de Redes...">
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label font-weight-bold">Cole o Texto Acadêmico</label>
+            <textarea name="text_content" class="form-control" rows="8" placeholder="Insira o conteúdo de estudo aqui..."></textarea>
+        </div>
+        
+        <div class="text-center my-3 text-muted"><strong>OU FAÇA UPLOAD DE ARQUIVO</strong></div>
+        
+        <div class="mb-4">
+            <label class="form-label font-weight-bold">Enviar PDF ou DOCX</label>
+            <input type="file" name="file" class="form-control" accept=".pdf,.docx">
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-lg w-100">Gerar Mapa Interativo com Inteligência Artificial</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow p-4 mt-5">
+            <h3 class="text-center text-primary mb-4">IntellectusMap - Login</h3>
+            <form method="POST">
+                <div class="mb-3">
+                    <label>E-mail</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Senha</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            </form>
+            <p class="text-center mt-3 mb-0">Não possui conta? <a href="{{ url_for('auth.register') }}">Cadastre-se</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
