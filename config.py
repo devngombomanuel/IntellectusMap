@@ -6,4 +6,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'database', 'intellectus.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
-    GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '')
+
+    GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', 'AQ.Ab8RN6LcJdmS-Zy68wPJ4ATY8U86am3vgOo5CpuLv3pP787gMg')
