@@ -28,12 +28,13 @@
                     <a href="{{ url_for('dashboard.index') }}">📊 Dashboard</a>
                     <a href="{{ url_for('upload.process_content') }}">🧠 Criar Mapa</a>
                     <a href="{{ url_for('maps.history') }}">📚 Histórico</a>
-                    <a href="{{ url_for('profile.view_profile') }}">👤 Meu Perfil</a> <a href="{{ url_for('auth.logout') }}" class="text-danger mt-5">🚪 Sair</a>
+                    <a href="{{ url_for('profile.view_profile') }}">👤 Meu Perfil</a> 
+                    <a href="{{ url_for('auth.logout') }}" class="text-danger mt-5">🚪 Sair</a>
                 </div>
             </nav>
             <main class="col-md-10 ms-sm-auto px-md-4 py-4">
             {% else %}
-            <main class="col-10 mx-auto py-5">
+            <main class="col-12 py-5">
             {% endif %}
                 
                 {% with messages = get_flashed_messages() %}
