@@ -78,13 +78,13 @@
             />
           </div>
           <div class="col-md-6 mb-3">
-            <label class="form-label">E-mail (Não editável)</label>
+            <label class="form-label">E-mail</label>
             <input
               type="email"
+              name="email"
               class="form-control"
               value="{{ current_user.email }}"
-              readonly
-              disabled
+              required
             />
           </div>
         </div>
@@ -130,9 +130,7 @@
             class="form-control"
             rows="4"
             placeholder="Conte um pouco sobre seus objetivos de estudo..."
-          >
-{{ current_user.bio or '' }}</textarea
-          >
+          >{{ current_user.bio or '' }}</textarea>
         </div>
 
         <div class="mb-4">
