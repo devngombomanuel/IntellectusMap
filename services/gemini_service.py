@@ -9,7 +9,7 @@ class GeminiService:
         if not api_key:
             raise ValueError("A chave GEMINI_API_KEY não foi encontrada nas configurações.")
             
-        # URL atualizada para o modelo estável padrão de 2026 (gemini-2.5-flash)
+      
         url = f"https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}"
         
         headers = {
