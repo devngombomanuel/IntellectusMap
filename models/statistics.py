@@ -9,5 +9,5 @@ class Statistics(db.Model):
     total_maps = db.Column(db.Integer, default=0)
     total_documents = db.Column(db.Integer, default=0)
     total_words = db.Column(db.Integer, default=0)
-    study_time = db.Column(db.Integer, default=0) # em minutos
+    study_time = db.Column(db.Integer, default=0)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
