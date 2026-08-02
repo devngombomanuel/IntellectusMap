@@ -13,10 +13,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Inicialização do DB
     db.init_app(app)
 
-    # Configuração de Login
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -25,14 +23,13 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Registro das Blueprints (Rotas Organizadas)
+  
     app.register_blueprint(auth_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(upload_bp)
     app.register_blueprint(maps_bp)
-    app.register_blueprint(profile_bp)  # <-- ATUALIZADO: Incluído o Blueprint de perfil
+    app.register_blueprint(profile_bp)  
 
-    # Criação de pastas internas necessárias e DB
     with app.app_context():
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         os.makedirs(os.path.join(app.config['BASE_DIR'], 'database'), exist_ok=True)
