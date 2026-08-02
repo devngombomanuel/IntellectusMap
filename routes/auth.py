@@ -7,7 +7,6 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
-    # Se o utilizador já tiver uma sessão ativa, impede o acesso e manda para o Dashboard
     if current_user.is_authenticated:
         return redirect(url_for('dashboard.index'))
 
@@ -41,7 +40,6 @@ def register():
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    # Se o utilizador já tiver uma sessão ativa, impede o acesso e manda para o Dashboard
     if current_user.is_authenticated:
         return redirect(url_for('dashboard.index'))
 
